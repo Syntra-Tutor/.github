@@ -1,0 +1,41 @@
+# OPERATIONAL COMPUTATIONAL DOMAINS
+- name: "domain:schema"
+  color: "1D76DB"
+  description: "Primitive S: AST syntax, type declarations, DSL parsing, and topology graph definitions"
+
+- name: "domain:policy"
+  color: "5319E7"
+  description: "Primitive V: Security rules, static policy checks, and logical invariant assertions"
+
+- name: "domain:plan"
+  color: "0052CC"
+  description: "Primitive Delta: In-memory graph diffing, step ordering, and execution plan calculations"
+
+- name: "domain:runtime"
+  color: "D93F0B"
+  description: "Primitive R: Live environment mutations, state drift, API retries, and controller loops"
+
+- name: "domain:telemetry"
+  color: "0E8A16"
+  description: "Primitive O: Metrics pipelines, log aggregation, and trace projection streams"
+
+# META-ENGINEERING ARTIFACT DOMAINS
+- name: "domain:ui"
+  color: "F9D0C4"
+  description: "Primitive Pi_UI: UI layout rendering, spatial component trees, and design tokens"
+
+- name: "domain:build"
+  color: "FBCA04"
+  description: "Primitive B_DAG: Compilation task graphs, CI/CD pipeline steps, and artifact store caching"
+
+- name: "domain:vcs"
+  color: "C2E0C6"
+  description: "Primitive P_VC: Version control, merge conflicts, rebase history, and patch commutation"
+
+- name: "domain:intent"
+  color: "BFD4F2"
+  description: "Primitive D_INT: Specification intent deltas, feature additions vs. bug remediations"
+
+- name: "domain:deps"
+  color: "D4C5F9"
+  description: "Primitive R_DEP: Package version hypergraphs, dependency resolution, and lockfile constraints"
