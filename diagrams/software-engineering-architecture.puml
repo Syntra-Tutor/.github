@@ -1,0 +1,58 @@
+@startuml
+skinparam shadowing false
+skinparam packageStyle frame
+skinparam HorizontalAlignment center
+skinparam packageTextAlignment center
+skinparam componentStyle rectangle
+
+title Clean Centered Vertical Architecture of Language Execution Subsystems
+
+' ------------------------------------------------------------------
+' LAYER 1: COGNITIVE & VISUAL LAYOUT
+' ------------------------------------------------------------------
+package "Layer 1: Cognitive & Visual Layout Subsystem" as L1 #LightCyan {
+  [Tier 1: Human Intent Processors\n(English / Markdown)] as T1
+  [Tier 2: Graph & Spatial Layout Engines\n(PlantUML / D2 / Mermaid / Penrose / TikZ-cd)] as T2
+}
+
+' ------------------------------------------------------------------
+' LAYER 2: COMPUTATIONAL & PROOF KERNELS
+' ------------------------------------------------------------------
+package "Layer 2: Computational & Proof Kernel Subsystem" as L2 #E6E6FA {
+  [Tier 5: Machine-Checked Logic Kernels\n(TLA+ / Alloy / Lean 4 / Coq)] as T5
+  [Tier 3: Turing-Complete Runtime Executables\n(C++ / Rust / Python / TypeScript)] as T3
+}
+
+' ------------------------------------------------------------------
+' LAYER 3: DECLARATIVE EVALUATION & RECONCILIATION
+' ------------------------------------------------------------------
+package "Layer 3: Declarative Evaluation & Reconciliation Subsystem" as L3 #FFFACD {
+  [Tier 4: Bounded Query & Policy Solvers\n(SQL / GraphQL / Rego)] as T4
+  [Tier 6: Environment State Reconcilers\n(HCL / Dockerfile / Makefile / Nix)] as T6
+}
+
+' ------------------------------------------------------------------
+' LAYER 4: DATA TRANSPORT & STREAM ENGINES
+' ------------------------------------------------------------------
+package "Layer 4: Data Transport & Stream Engine Subsystem" as L4 #E0FFFF {
+  [Tier 7: Passive Serialization & Interface Contracts\n(YAML / JSON / TOML / Protobuf / OpenAPI)] as T7
+  [Tier 8: Time-Series Telemetry & Stream Queries\n(PromQL / LogQL / KQL)] as T8
+}
+
+' ------------------------------------------------------------------
+' SINGLE CENTERED VERTICAL SPINE (Top-to-Bottom Flow)
+' ------------------------------------------------------------------
+T1 -down-> T2 : Transpiles layout ASTs
+T2 -down-> T5 : Generates proof state diagrams
+T5 -down-> T3 : Compiles verified logic to CPU code
+T3 -down-> T4 : Executes queries & policy checks
+T4 -down-> T6 : Packages binaries into IaC manifests
+T6 -down-> T7 : Parses environment serialization schemas
+T7 -down-> T8 : Provisions live metric streams
+
+' ------------------------------------------------------------------
+' RECURSIVE FEEDBACK LOOP
+' ------------------------------------------------------------------
+T8 .up.> T1 : Runtime audit diagnostics feedback
+
+@enduml
