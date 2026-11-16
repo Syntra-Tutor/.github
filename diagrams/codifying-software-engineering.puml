@@ -1,0 +1,36 @@
+@startuml
+skinparam componentStyle uml2
+skinparam BoxPadding 10
+
+box "Design & Verification" #LightCyan
+participant "Tier 1: Human Specs\n(English / Markdown)" as T1
+participant "Tier 2: Visual DSLs\n(PlantUML / D2)" as T2
+participant "Tier 5: Formal Logic\n(TLA+ / Lean 4)" as T5
+end box
+
+box "Implementation & Contracts" #LightYellow
+participant "Tier 3: Core GPLs\n(Rust / C++ / Python)" as T3
+participant "Tier 7: IDLs & Schemas\n(Protobuf / OpenAPI)" as T7
+participant "Tier 4: Data & Policy DSLs\n(SQL / Rego)" as T4
+end box
+
+box "Deployment & Runtime Audit" #LightGreen
+participant "Tier 6: Infrastructure DSLs\n(HCL / Dockerfile / Nix)" as T6
+participant "Tier 8: Telemetry Syntaxes\n(PromQL / LogQL)" as T8
+end box
+
+T1 -> T2 : Transpile Layout AST\n[Generates Architecture Diagrams]
+T1 -> T5 : Formalize System Intent\n[Translates Requirements to Invariants]
+T5 -> T5 : Model Check / Prove Kernel\n[Validates Safety & Liveness]
+
+T5 -> T3 : Manual / Verified Code Synthesis\n[Implements Checked Algorithms]
+T3 -> T7 : Compile Schema Definitions\n[Generates RPC Stubs & Wire Types]
+T3 -> T4 : Execute Dynamic Queries & Policies\n[Evaluates Relational Joins & Rules]
+
+T3 -> T6 : Package Executable Binaries\n[Builds Containers & IaC Manifests]
+T6 -> T6 : Reconcile Target State\n[Provisions Cloud Infrastructure]
+
+T6 -> T8 : Emit Operational Telemetry\n[Scrapes Metrics & Log Events]
+T8 -> T1 : Runtime Audit Feedback Loop\n[Triggers Requirements Refinement]
+
+@enduml
