@@ -1,0 +1,30 @@
+name: "Submit Issue"
+description: "Submit a categorized issue for triage"
+title: "[Issue]: "
+body:
+  - type: dropdown
+    id: domain
+    attributes:
+      label: "System Domain"
+      description: "Select the primary layer where this issue or request belongs"
+      options:
+        - "domain:schema (Data models, types, interfaces, AST syntax)"
+        - "domain:policy (Business rules, validation, security, permissions)"
+        - "domain:plan (State machines, diffs, step sequencing)"
+        - "domain:runtime (Runtime crashes, exceptions, timeouts, live state)"
+        - "domain:telemetry (Metrics, logging, traces, audit events)"
+        - "domain:ui (Visual layout, CSS, components, rendering)"
+        - "domain:build (CI/CD pipelines, bundlers, compilers, cache)"
+        - "domain:vcs (Git merges, rebases, patch conflicts)"
+        - "domain:intent (Feature proposals, spec changes, documentation)"
+        - "domain:deps (Package lockfiles, dependencies, version conflicts)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: "Issue Details"
+      description: "Provide a clear description of the bug, feature, or request"
+    validations:
+      required: true
