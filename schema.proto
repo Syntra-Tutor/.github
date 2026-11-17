@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package sef.tier7;
+
+// Atomic State Transition Data Contract (SU(4) Boundary Extraction)
+message StateTransitionRequest {
+  string deficiency_id = 1;     // Atomic Deficiency ID (Dn)
+  uint64 sequence_number = 2;    // Monotonic sequence number
+  bytes payload = 3;             // State payload
+  int64 timestamp_utc_ms = 4;    // Millisecond timestamp
+}
+
+message StateTransitionResponse {
+  string deficiency_id = 1;
+  bool is_admissible = 2;       // Invariant preservation status
+  string error_message = 3;
+  uint64 execution_latency_us = 4;
+}
