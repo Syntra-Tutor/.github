@@ -1,23 +1,33 @@
 direction: down
 
-layer1: "Layer 1: Cognitive & Visual Layout Subsystem" {
-  t1: "Tier 1: Human Intent (Markdown / Atomic Issues Dn)"
-  t2: "Tier 2: Declarative Layout AST (D2 / PlantUML)"
-  t1 -> t2: "Transpiles AST"
+tier1: "Tier 1: Human Intent (Atomic Issue #Dn)" {
+  shape: document
 }
 
-layer2: "Layer 2: Computational & Proof Kernels" {
-  t5: "Tier 5: Logic Kernel (Lean 4 / Formal Verifier)"
-  t3: "Tier 3: Turing-Complete Runtime (Rust / C++)"
-  t5 -> t3: "Compiles Verified Logic"
+tier2: "Tier 2: Declarative AST (architecture.d2)" {
+  shape: rectangle
 }
 
-layer3: "Layer 4: Data & Telemetry" {
-  t7: "Tier 7: Jurisdictional IDLs (Protobuf / OpenAPI)"
-  t8: "Tier 8: Telemetry Stream (PromQL / LogQL)"
-  t7 -> t8: "Provisions Observability"
+tier5: "Tier 5: Lean 4 Formal Kernel (ConstitutionalSEF.lean)" {
+  shape: class
+  style.fill: "#e1f5fe"
 }
 
-layer1.t2 -> layer2.t5: "Stage 5 Evaluation Firewall (Sigma)"
-layer2.t3 -> layer3.t7: "Binds Interface Contracts"
-layer3.t8 -> layer1.t1: "SU(7) Webhook Loopback (Dn+1)"
+tier3: "Tier 3: C++20 Runtime Engine (main.cpp)" {
+  shape: code
+}
+
+tier7: "Tier 7: Protobuf IDL (schema.proto)" {
+  shape: hexagon
+}
+
+tier8: "Tier 8: Telemetry Stream (PromQL Metric Stream)" {
+  shape: cylinder
+}
+
+tier1 -> tier2: "1. Transpiles Scope"
+tier2 -> tier5: "2. Formal Spec Input"
+tier5 -> tier3: "3. Stage 5 Firewall Certification (Sigma)"
+tier3 -> tier7: "4. Binds C++ Structs"
+tier3 -> tier8: "5. Emits Metrics"
+tier8 -> tier1: "6. SU(7) Webhook Loopback (Auto Issue #Dn+1)"
