@@ -1,0 +1,23 @@
+direction: down
+
+layer1: "Layer 1: Cognitive & Visual Layout Subsystem" {
+  t1: "Tier 1: Human Intent (Markdown / Atomic Issues Dn)"
+  t2: "Tier 2: Declarative Layout AST (D2 / PlantUML)"
+  t1 -> t2: "Transpiles AST"
+}
+
+layer2: "Layer 2: Computational & Proof Kernels" {
+  t5: "Tier 5: Logic Kernel (Lean 4 / Formal Verifier)"
+  t3: "Tier 3: Turing-Complete Runtime (Rust / C++)"
+  t5 -> t3: "Compiles Verified Logic"
+}
+
+layer3: "Layer 4: Data & Telemetry" {
+  t7: "Tier 7: Jurisdictional IDLs (Protobuf / OpenAPI)"
+  t8: "Tier 8: Telemetry Stream (PromQL / LogQL)"
+  t7 -> t8: "Provisions Observability"
+}
+
+layer1.t2 -> layer2.t5: "Stage 5 Evaluation Firewall (Sigma)"
+layer2.t3 -> layer3.t7: "Binds Interface Contracts"
+layer3.t8 -> layer1.t1: "SU(7) Webhook Loopback (Dn+1)"
