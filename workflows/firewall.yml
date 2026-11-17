@@ -1,0 +1,33 @@
+name: "Stage 5 Evaluation Firewall (Sigma)"
+
+on:
+  pull_request:
+    branches: [ "main" ]
+    types: [ opened, synchronize, reopened ]
+
+jobs:
+  atomic-deficiency-check:
+    name: "Tier 1: Validate Atomic Scope (Dn)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify Single Issue Binding
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const matches = (pr.body || "").match(/(?:Fixes|Closes|Resolves)\s+#(\d+)/gi);
+            if (!matches || matches.length !== 1) {
+              core.setFailed("SEF Error: PR must link to exactly ONE atomic Issue (#Dn).");
+            }
+
+  lean4-proof-firewall:
+    name: "Tier 5: Lean 4 Formal Verification Gate"
+    needs: atomic-deficiency-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Lean 4
+        uses: leanprover/lean4-action@v1
+      - name: Build & Verify Proof Kernel
+        run: lake build ConstitutionalSEF
