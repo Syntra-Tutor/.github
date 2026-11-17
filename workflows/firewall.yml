@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Verify Single Issue Binding
+      - name: Enforce Single Issue Link (#Dn)
         uses: actions/github-script@v7
         with:
           script: |
             const pr = context.payload.pull_request;
             const matches = (pr.body || "").match(/(?:Fixes|Closes|Resolves)\s+#(\d+)/gi);
             if (!matches || matches.length !== 1) {
-              core.setFailed("SEF Error: PR must link to exactly ONE atomic Issue (#Dn).");
+              core.setFailed("SEF Error: PR must link to exactly ONE atomic Issue (#Dn). Stacked PRs required.");
             }
 
   lean4-proof-firewall:
@@ -27,7 +27,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Lean 4
+      - name: Setup Lean 4 Environment
         uses: leanprover/lean4-action@v1
-      - name: Build & Verify Proof Kernel
+      - name: Build & Execute Proof Kernel
         run: lake build ConstitutionalSEF
+
+  cpp-build-and-test:
+    name: "Tier 3/6: C++20 Build & Protobuf Compilation"
+    needs: lean4-proof-firewall
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install C++ & Protobuf Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake build-essential libprotobuf-dev protobuf-compiler
+      - name: Build C++ Runtime Engine
+        run: |
+          mkdir build && cd build
+          cmake ..
+          make -j$(nproc)
+      - name: Run Runtime Verification Binary
+        run: ./build/sef_runtime
