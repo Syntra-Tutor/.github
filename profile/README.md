@@ -1,1 +1,1 @@
-Welcome, dear student of language.
+Welcome, student of language.
